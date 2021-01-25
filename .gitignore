@@ -1,4 +1,3 @@
 __pycache__
 config/config.yml
 venv
-log/*.log
