@@ -60,7 +60,9 @@ log:
 ```
 
 # Automatisation
-Automatiser l'exécution du script en programmant une tâche avec cron
+Modifier le script lotek2db.sh de sorte que le chemin vers le dossier du projet corresponde à votre environnement local (ligne 5)
+
+Ensuite, automatiser l'exécution du script en programmant une tâche avec cron
 ```
 $ crontab -e 
 ```
