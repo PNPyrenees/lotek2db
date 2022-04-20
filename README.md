@@ -16,7 +16,7 @@ D'autres configurations doivent pouvoir correspondre mais reste à tester
 # Récupération des codes sources
 Récupérer les codes sources avec git :
 ```sh
-$ git clone https://github.com/lepontois/lotek2db.git
+$ git clone https://github.com/PNPyrenees/lotek2db.git
 ```
 
 # Installation

@@ -35,14 +35,16 @@ class Logger:
 
         msg = EmailMessage()
         msg['Subject']="[BDD-Bouquetin] - ERREUR integration"
-        msg['From']="ludovic.lepontois@pyrenees-parcnational.fr"
+        msg['From']="contact@parc-pyrenees.fr"
         msg['To']="ludovic.lepontois@pyrenees-parcnational.fr"
 
         with open(self.logFile) as f:
             msg.set_content(f.read())
 
-        server = smtplib.SMTP_SSL(self.mailHost, self.mailPort)
+        #server = smtplib.SMTP_SSL(self.mailHost, self.mailPort)
+        server = smtplib.SMTP(self.mailHost, self.mailPort)
         server.ehlo()
+        server.starttls()
         server.login(self.mailId, self.mailPass)
         #server.sendmail("lepontois.ludovic@gmail.com", "ludovic.lepontois@pyrenees-parcnational.fr", msg)
         server.send_message(msg)
