@@ -4,7 +4,8 @@ CREATE SCHEMA bouquetin;
 /* t_animal */ 
 CREATE TABLE bouquetin.t_animal
 (
-    ani_id serial NOT NULL ,
+    ani_id serial NOT NULL,
+    ani_num_capture character varying(32)
     ani_nom character varying(32),
     ani_sexe character(1),
     ani_annee_naissance integer,
@@ -285,6 +286,7 @@ CREATE VIEW bouquetin.v_animal_last_loc
  AS
  SELECT DISTINCT ON (ani.ani_id) loc.loc_id,
     ani.ani_id,
+    ani.ani_num_capture,
     ani.ani_nom,
     ani.ani_pop_rattach,
     capt.capt_id,
@@ -312,6 +314,7 @@ CREATE OR REPLACE VIEW bouquetin.v_localisation
  AS
  SELECT loc.loc_id,
     ani.ani_id,
+    ani.ani_num_capture,
     ani.ani_nom,
     ani.ani_pop_rattach,
     capt.capt_id,
