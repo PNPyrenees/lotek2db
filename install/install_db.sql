@@ -12,6 +12,7 @@ CREATE TABLE bouquetin.t_animal
     ani_date_relache timestamp without time zone,
     ani_date_mort timestamp without time zone,
     ani_pop_rattach character varying(32),
+    ani_gestionnaire character varying(32),
     ani_marquage_oreille_droite character varying(32),
     ani_marquage_oreille_gauche character varying(32),
     ani_marquage_couleur_collier character varying(32),
@@ -45,6 +46,9 @@ COMMENT ON COLUMN bouquetin.t_animal.ani_date_mort
 
 COMMENT ON COLUMN bouquetin.t_animal.ani_pop_rattach
     IS 'Population auquel l’animal relâché a été rattaché (Apse, Cauterets, Gèdre)';
+
+COMMENT ON COLUMN bouquetin.t_animal.ani_pop_rattach
+    IS 'Structure ayant la responsabilité de gestion de l''animal';
 
 COMMENT ON COLUMN bouquetin.t_animal.ani_marquage_oreille_droite
     IS 'Couleur du marquage appliqué sur l’oreille droite';
