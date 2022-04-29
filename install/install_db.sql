@@ -80,6 +80,10 @@ COMMENT ON COLUMN bouquetin.t_animal.ani_date_maj
 COMMENT ON COLUMN bouquetin.t_animal.ani_marquage_bande_laterale_collier
     IS 'Couleur de la bande latérale du collier';
 
+COMMENT ON COLUMN bouquetin.t_animal.ani_marquage_bande_laterale_collier
+    IS 'Numéro de capture de l’animal';
+
+
 /*************/ 
 /* t_capteur */ 
 CREATE TABLE bouquetin.t_capteur
