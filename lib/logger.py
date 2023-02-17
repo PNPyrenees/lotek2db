@@ -25,14 +25,14 @@ class Logger:
         # Initialisation du fichier de log
         logging.basicConfig(filename=self.logFile, filemode='w', level=logging.DEBUG)
 
-    # Fonction d'écriture des erreurs
-    def logError(self, code, message, exception=None):
-        """ Ecriture des erreur dans le fichier de logs 
-        et envois par email """
+    # Fonction se chargeant d'écrire dans le fichier de log
+    def writeLog(self, code, message, exception=None):
         logging.error("["+datetime.now().strftime("%d/%m/%Y %H:%M:%S")+"] - [CODE:"+code+"] "+message)
         if exception:
             logging.debug(str(exception))
 
+    # Fonction se chargeant d'envoyer les logs par email
+    def sendLogByMail(self):
         msg = EmailMessage()
         msg['Subject']="[BDD-Bouquetin] - ERREUR integration"
         msg['From']="contact@parc-pyrenees.fr"
@@ -41,14 +41,25 @@ class Logger:
         with open(self.logFile) as f:
             msg.set_content(f.read())
 
-        #server = smtplib.SMTP_SSL(self.mailHost, self.mailPort)
         server = smtplib.SMTP(self.mailHost, self.mailPort)
         server.ehlo()
         server.starttls()
         server.login(self.mailId, self.mailPass)
-        #server.sendmail("lepontois.ludovic@gmail.com", "ludovic.lepontois@pyrenees-parcnational.fr", msg)
         server.send_message(msg)
         server.close()
 
-
+    # Fonction d'écriture des erreurs
+    def logError(self, code, message, exception=None):
+        """ Ecriture des erreur dans le fichier de logs 
+        et envois par email """
+        self.writeLog(code, message)
+        self.sendLogByMail()
+        # Erreur majeur, on interrompt le script
         sys.exit()
+
+    # Fonction d'écriture des alertes (non bloquant)
+    def logWarning(self, code, message, exception=None):
+        """ Ecriture des erreur dans le fichier de logs 
+        et envois par email """
+        self.writeLog(code, message)        
+        self.sendLogByMail()

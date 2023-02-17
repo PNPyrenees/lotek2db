@@ -43,9 +43,11 @@ class Api:
         dernière localisation (dtStart)""" 
         responses = requests.get('https://webservice.lotek.com/API/gps?deviceId=' + deviceId + '&dtStart=' + dtStart, headers = self.headers)
         if responses.status_code != 200:
-            self.logError(
+            self.logger.logWarning(
                 code = "100",
-                message = "Erreur lors de l'authentification sur l'API LOTEK",
-                exception = response.json()
+                message = "Erreur lors de la récupération des données associées au capteur " + deviceId,
+                exception = responses.json()
             )
+            return None
+            
         return responses.json()

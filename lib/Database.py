@@ -68,7 +68,7 @@ class Database :
             )
         return self.cursor.fetchall()
 
-    def insertLocData(self, capt_id, loc_long, loc_lat, loc_dop, loc_altitude_capteur, loc_temperature_capteur, loc_date_capteur_utc):
+    def insertLocData(self, capt_id, loc_long, loc_lat, loc_dop, loc_altitude_capteur, loc_temperature_capteur, loc_date_capteur_utc, fix_status_id, loc_nb_satellites):
         """ Requête d'insertion des données 
         possédant une localisation 
         longitude/latitude """
@@ -83,13 +83,17 @@ class Database :
                     loc_dop,
                     loc_altitude_capteur,
                     loc_temperature_capteur,
-                    loc_date_capteur_utc
+                    loc_date_capteur_utc,
+                    fix_status_id,
+                    loc_nb_satellites
                 ) 
                 VALUES (
                     %s, 
                     %s, 
                     %s, 
                     ST_Transform(ST_SetSRID(ST_MakePoint(%s, %s), 4326), 2154), 
+                    %s, 
+                    %s,
                     %s, 
                     %s,
                     %s, 
@@ -106,6 +110,8 @@ class Database :
                     loc_altitude_capteur,
                     loc_temperature_capteur,
                     loc_date_capteur_utc,
+                    fix_status_id,
+                    loc_nb_satellites
                 )
             )
             self.conn.commit()
@@ -118,7 +124,7 @@ class Database :
                 exception = e
             )
 
-    def insertNoLocData(self, capt_id, loc_dop, loc_altitude_capteur, loc_temperature_capteur, loc_date_capteur_utc, loc_commentaire, loc_anomalie):
+    def insertNoLocData(self, capt_id, loc_dop, loc_altitude_capteur, loc_temperature_capteur, loc_date_capteur_utc, loc_commentaire, loc_anomalie, fix_status_id, loc_nb_satellites):
         """ Requête d'insertion des données 
         ne possédant pas de localisation 
         longitude/latitude """
@@ -132,7 +138,9 @@ class Database :
                     loc_temperature_capteur,
                     loc_date_capteur_utc,
                     loc_commentaire,
-                    loc_anomalie
+                    loc_anomalie,
+                    fix_status_id,
+                    loc_nb_satellites
                 ) 
                 VALUES (
                     %s, 
@@ -140,6 +148,8 @@ class Database :
                     %s,
                     %s, 
                     %s, 
+                    %s, 
+                    %s 
                     %s, 
                     %s )
                 """, 
@@ -150,7 +160,9 @@ class Database :
                     loc_temperature_capteur,
                     loc_date_capteur_utc,
                     loc_commentaire,
-                    loc_anomalie
+                    loc_anomalie,
+                    fix_status_id,
+                    loc_nb_satellites
                 )
             )
 
