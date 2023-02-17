@@ -80,20 +80,23 @@ La valeur de RxStatut est passé en binaire.
 Le trois premiers bits renseignent le fix statut et les autres le nombre de satellite.
 
 Table de correspondance du code fx_status:
-|0|No Fix|
-|1|1_SV KF Solution|
-|2|2_SV KF|
-|3|3_SV KF|
-|4|4 or more SV KF|
-|5|2-D least-squares|
-|6|3-D least-squares|
-|7|DR|
+| fix code  | value |
+| ------------ | ------------ |
+| 0 | No Fix |
+| 1 | 1_SV KF Solution |
+| 2 | 2_SV KF |
+| 3 | 3_SV KF |
+| 4 | 4 or more SV KF |
+| 5 | 2-D least-squares |
+| 6 | 3-D least-squares |
+| 7 | DR |
 
-Exemple avec un RxStatut à 76 :
-        valeur binaire : 01001100
-        trois premieris bits : 100 corespondant à 4 en base10 (décimal) -> soit "4 or more SV KF"
-        les autres bits : 01001 correspondant à 9 en base 10 -> soit 9 satellites
-
+**Exemple avec un RxStatut à 76 :**
+```
+- valeur binaire : 01001100
+- trois premieris bits : 100 corespondant à 4 en base10 (décimal) -> soit "4 or more SV KF"
+- les autres bits : 01001 correspondant à 9 en base 10 -> soit 9 satellites
+```
 
 #License
 ----
