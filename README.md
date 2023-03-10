@@ -21,6 +21,10 @@ $ git clone https://github.com/PNPyrenees/lotek2db.git
 
 # Installation
  - Exécuter le script d'initialisation de la base de données (install/install_db.sql)
+ - Installer le paquet libpq-dev
+ ```sh
+$ sudo apt-get install libpq-dev
+```
  - Créer un environnement virtuel python
 ```sh
 $ cd <pathTo>/lotek2db
