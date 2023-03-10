@@ -40,9 +40,13 @@ def main():
                 loc_altitude_capteur = response['Altitude']
                 loc_temperature_capteur = response['Temperature']
                 loc_date_capteur_utc = response['RecDateTime']
-                rxstatut_bin = bin(response['RxStatus'])
-                fix_status_id = int(rxstatut_bin[len(rxstatut_bin) - 3 : len(rxstatut_bin)], 2) # Extraction de 3 premiers bit du RxStatut correspondant à l'identifiant du fix_status
-                loc_nb_satellites = int(rxstatut_bin[rxstatut_bin.index('b') + 1 : len(rxstatut_bin) - 3], 2) # Extraction des 4 bit suivant du RxStatut correspondant aunombre de satellites
+                if response['RxStatus'] == 0 :
+                    fix_status_id = 0
+                    loc_nb_satellites = 0
+                else :
+                    rxstatut_bin = bin(response['RxStatus'])
+                    fix_status_id = int(rxstatut_bin[len(rxstatut_bin) - 3 : len(rxstatut_bin)], 2) # Extraction de 3 premiers bit du RxStatut correspondant à l'identifiant du fix_status
+                    loc_nb_satellites = int(rxstatut_bin[rxstatut_bin.index('b') + 1 : len(rxstatut_bin) - 3], 2) # Extraction des 4 bit suivant du RxStatut correspondant aunombre de satellites
 
                 if loc_long == 0 and loc_lat == 0:
                     # Ici on n'a pas de coordonnées pour ce capteur à cette date
