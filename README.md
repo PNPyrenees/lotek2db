@@ -63,6 +63,8 @@ log:
     logFile: log/lotek2db.logl
 ```
 
+- Copier ensuite le fichier lotek2db.sh.default en le renommant lotek2db.sh. Editer le pour remplacer la valeur <PATH_TO_lotek2db> par le chemin absolu vers le dossier de lotek2db
+
 # Automatisation
 Modifier le script lotek2db.sh de sorte que le chemin vers le dossier du projet corresponde à votre environnement local (ligne 5)
 
