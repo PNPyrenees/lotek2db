@@ -1,5 +1,6 @@
 __pycache__
 config/config.yml
+lotek2db.sh
 venv
 *.BAK
 *.log

@@ -40,7 +40,7 @@ def main():
                 loc_altitude_capteur = response['Altitude']
                 loc_temperature_capteur = response['Temperature']
                 loc_date_capteur_utc = response['RecDateTime']
-                if response['RxStatus'] == 0 :
+                if response['RxStatus'] == 0 or len(str(response['RxStatus'])) != 2:
                     fix_status_id = 0
                     loc_nb_satellites = 0
                 else :
